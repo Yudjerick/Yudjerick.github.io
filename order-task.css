@@ -1,0 +1,24 @@
+.order-task-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 7vh;
+    position: relative;
+}
+
+.order-task-dropzone{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 7vh;
+    position: relative;
+    border-radius: 3vmin;
+    border: solid aliceblue 2px;
+}
+
+.order-elem{
+}
+
+.order-elem-selected{
+    position: absolute;
+}

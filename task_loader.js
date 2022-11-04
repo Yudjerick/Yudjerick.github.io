@@ -5,6 +5,7 @@ let task1 = { type: "test", tasktext: "Pick a synonym to 'funny'" ,content: ["sa
 var task2 = { type: "match", tasktext: "Match words and translations", content: [["general","generous","genetic"],["основной","щедрый","генетический"]]}
 var task3 = { type: "match", tasktext: "Match words and translations", content: [["brave","brain","bread","bird","break","beard"],["смелый","мозг","хлеб","птица","перерыв","борода"]]}
 var task4 = { type: "match", tasktext: "Match words and their meanings", content: [["ergonomics","economics","etymology"],["the study of people's efficiency in their working environment","the branch of knowledge concerned with the production, consumption, and transfer of wealth","the history of a linguistic form (such as a word) shown by tracing its development since its earliest recorded occurrence in the language where it is found, by tracing its transmission from one language to another, by analyzing it into its component parts, by identifying its cognates in other languages, or by tracing it and its cognates to a common ancestral form in an ancestral language"]]}
+let task5 = { type: 'order',tasktext: 'Put words in correct order', content: ['Have','you','ever','been','in','Paris','?']};
 
 load_button1 = document.querySelector('#load_json1');
 load_button2 = document.querySelector('#load_json2');
@@ -22,7 +23,7 @@ load_button2.addEventListener('click', () =>{
 });
 
 load_button3.addEventListener('click', () =>{
-    loadTask(task3, document.querySelector('.task-container'));
+    loadTask(task5, document.querySelector('.task-container'));
     hideLoadButtons();
 });
 
@@ -39,6 +40,9 @@ function loadTask(task, container = document.body) {
             break;
         case 'match':
             loadMatchTask(task, container);
+            break;
+        case 'order':
+            loadOrderTask(task,container);
         default:
             break;
     }
@@ -73,6 +77,8 @@ function loadTestTask(task, container){
 }
 
 function loadMatchTask(task, container){
+    let svgContainer = document.createElementNS('http://www.w3.org/2000/svg','svg');;
+    document.body.prepend(svgContainer);
     let div = document.createElement('div');
     let taskText = document.createElement('p');
     taskText.innerHTML = task.tasktext;
@@ -214,6 +220,54 @@ function loadMatchTask(task, container){
     container.append(div);
 }
 
+function loadOrderTask(task, container)
+{
+    let mouseShiftX = 0;
+    let mouseShiftY = 0;
+    let active = null;
+    let div = document.createElement('div');
+    let taskText = document.createElement('p');
+    taskText.innerHTML = task.tasktext;
+    taskText.className = 'task-text';
+    let taskBorder = document.createElement('div');
+    taskBorder.className = "order-task-container";
+    let taskBorder2 = document.createElement('div');
+    taskBorder2.className = "order-task-dropzone";
+    taskBorder2.id = "drop-zone";
+    div.prepend(taskText);
+    div.append(taskBorder2);
+    div.append(taskBorder);
+    taskBorder2.ondragover = allowDrop;
+    taskBorder2.ondrop = drop;
+
+    
+    for(let i of task.content){
+        let orderElem = document.createElement('button');
+        orderElem.className = "order-elem";
+        orderElem.id = 'order-elem-' + i;
+        orderElem.innerHTML = i;
+        orderElem.draggable = true;
+        orderElem.ondragstart = drag;
+        taskBorder.append(orderElem);
+    }
+    container.append(div);
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+  
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    console.log(ev.target.id);
+}
+  
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
 function drawLine(from,to,container,color = '#f2f7ff'){
     var canvas = document.createElement('canvas');
     canvas.width = document.body.clientWidth;
@@ -243,7 +297,7 @@ function drawLineSVG(from,to,container,color = '#f2f7ff'){
     var boxTo = to.getBoundingClientRect();
     var pointFrom = {x:boxFrom.right, y:boxFrom.top + boxFrom.height/2};
     var pointTo = {x:boxTo.left, y:boxTo.top + boxTo.height/2};
-    let line = document.createElementNS('http://www.w3.org/2000/svg','line');;
+    let line = document.createElementNS('http://www.w3.org/2000/svg','line');
     svg.append(line);
     line.setAttribute('x1',pointFrom.x);
     line.setAttribute('y1',pointFrom.y);
