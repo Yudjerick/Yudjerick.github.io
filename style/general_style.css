@@ -1,0 +1,132 @@
+body{
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+main{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    position: relative;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    body{
+        height: auto;
+        overflow-y: scroll;
+    }
+}
+
+header{
+    background-image: linear-gradient(rgb(94, 0, 216), rgb(112, 0, 187));
+    /*background-image: linear-gradient(rgb(111, 0, 255), rgb(146, 0, 243));*/
+    margin: 0;
+}
+
+.topheader{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .nav-container{
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+.topheader > h1{
+    margin: 0;
+    padding: 0;
+    font-family: 'Russo One', sans-serif;
+    font-size: 4vmin;
+    margin: 0.5vmin;
+    color: white;
+    text-align: center;
+    align-items: stretch;
+}
+
+.login-icon{
+    position: absolute;
+    right: 0;
+    height: 5vmin;
+    aspect-ratio: 1;
+    background-color: transparent;
+    border: none;
+    background-image: url(../images/login.png);
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+    justify-self: right;
+    filter: invert();
+}
+
+
+
+nav{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-container{
+    overflow: hidden;
+    background-color: rgb(51, 54, 59);
+    flex-grow: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.nav-button{
+    background-image: linear-gradient(to left,rgb(44, 45, 47), rgb(51, 53, 58));
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.2rem;
+    color: rgb(216, 216, 216);
+    flex-grow: 2;
+    text-align: start;
+    border: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0;
+    filter: none;
+}
+
+.nav-button:hover{
+    color: white;
+}
+
+.nav-button::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    background-image: linear-gradient(to left,rgb(59, 226, 255),rgba(255, 255, 255, 0));
+    /*background-color: rgba(130, 194, 255, 0.2);*/
+    transform: translate(-102%);
+    transition: 0.3s;
+}
+
+.nav-button:hover::before{
+    transform: translate(0);
+}
+
+.nav-button-text{
+    position: relative;
+    z-index: 4;
+    padding: 0;
+    padding-left: 1em;
+}
