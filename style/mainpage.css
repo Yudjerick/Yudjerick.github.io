@@ -18,6 +18,39 @@
     }
 }
 
+@media (max-aspect-ratio: 1/1) {
+    .welcome-text{
+        font-size: 3vmax;
+    }
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .welcome-text{
+        font-size: 3vmin;
+    }
+}
+
+.welcome-text{
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+
+    padding:2vmin;
+    color: rgb(255, 255, 255);
+    animation-name: welcome;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function:cubic-bezier(0.000, 0.925, 0.925, 0.075);
+}
+
+@keyframes welcome {
+    from{
+        transform: translate(-70vw);
+    }
+    to{
+        transform: translate(70vw);
+    }
+}
+
 .option-icon{
     height: 100%;
     position: relative;
