@@ -127,7 +127,11 @@ function loadTestTask(task, container){
 }
 
 function loadMatchTask(task, container){
-    let svgContainer = document.createElementNS('http://www.w3.org/2000/svg','svg');;
+    let svgContainer = document.querySelector('svg');
+    if(svgContainer!=null){
+        svgContainer.remove();
+    }
+    svgContainer = document.createElementNS('http://www.w3.org/2000/svg','svg');
     document.body.prepend(svgContainer);
     let div = document.createElement('div');
     let taskText = document.createElement('p');

@@ -48,7 +48,7 @@ svg{
 }
 
 .task-container{
-    margin: 6vmin;
+    margin: 0;
     padding: 2.5vmin;
     width: 90vw;
     min-width: 300px;
@@ -58,6 +58,12 @@ svg{
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+@media (max-aspect-ratio: 4/3){
+    .task-container{
+        min-width: 80vw;
+    }
 }
 
 .task-container::-webkit-scrollbar {
@@ -90,7 +96,7 @@ canvas{
 }
 
 .matchelem{
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     width:fit-content;
     height: fit-content;
     background-color: rgba(255, 255, 255, 1);
@@ -100,14 +106,14 @@ canvas{
     border: none;
     position: relative;
     z-index: 2;
-    border-radius: 2vmin;
+    border-radius: 100vmax;
     filter: drop-shadow(0 0 5px rgba(82, 86, 92, 0.5));
     border: solid 2px transparent;
 }
 
 
 button{
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     width:fit-content;
     height: fit-content;
     background-color: rgb(53, 0, 102);
@@ -169,7 +175,7 @@ button{
 
 .info{
     font-family: 'Russo One', sans-serif;
-    font-size: 1.3vmax;
+    font-size: 3vmin;
     padding:4vmin;
     color: rgb(255, 255, 255);
 }
@@ -181,4 +187,27 @@ button{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.task-settings-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 2vmin;
+    margin: 5vmin;
+    overflow: hidden;
+    background-color: blanchedalmond;
+}
+
+.categories{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2vmax;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.category-checkbox{
+    
+    font-size: 1.3vmax;
 }
